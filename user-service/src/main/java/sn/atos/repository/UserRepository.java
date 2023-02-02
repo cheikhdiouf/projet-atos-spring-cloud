@@ -1,14 +1,16 @@
 package sn.atos.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 import sn.atos.entity.UserEntity;
 
 import java.util.Optional;
 
+@Repository
 public interface UserRepository extends JpaRepository <UserEntity, Integer> {
 
-    Optional<UserEntity> findUserEntitiesByFirstNameAndLastName(String firstName, String lastName);
+    Optional<UserEntity> findUserByFirstNameAndLastName(String firstName, String lastName);
 
-    Optional <UserEntity> findByLe(String libelle);
+    Optional <UserEntity> findByEmail(String email);
 
 }
