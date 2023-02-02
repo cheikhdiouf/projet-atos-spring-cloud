@@ -1,13 +1,14 @@
 package sn.atos.service;
 
 import sn.atos.dto.UserDto;
+import sn.atos.entity.UserEntity;
 
 import java.util.List;
 
 public interface UserService {
 
 
-    List<UserDto> findAll();
+    List<UserEntity> findAll();
 
     UserDto save(UserDto userDto);
 
