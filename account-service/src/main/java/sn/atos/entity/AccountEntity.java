@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import sn.atos.enums.CompteType;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -12,11 +13,11 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AccountEntity implements Serializable {
-
+public class AccountEntity {
     @Id
     private  String id;
     private Date creationDate;
     private  Long accountNumber;
     private double amount;
+    private CompteType compteType;
 }
