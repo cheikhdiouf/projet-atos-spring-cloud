@@ -1,6 +1,8 @@
 package sn.atos.service.impl;
-
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
+import sn.atos.dto.AccountDto;
 import sn.atos.dto.UserDto;
 import sn.atos.entity.UserEntity;
 import sn.atos.mapper.UserMapper;
@@ -15,10 +17,13 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
 
     private final UserMapper userMapper;
+    
+	private RestTemplate restTemplate;
 
-    public UserServiceImpl(UserRepository userRepository, UserMapper userMapper) {
+    public UserServiceImpl(UserRepository userRepository, UserMapper userMapper,RestTemplate restTemplate) {
         this.userRepository = userRepository;
         this.userMapper = userMapper;
+        this.restTemplate =restTemplate;
     }
 
     @Override
@@ -39,16 +44,13 @@ public class UserServiceImpl implements UserService {
         return null;
     }
 
-    @Override
-    public List<UserDto> findUserByFirstNameAndLastName(String firstName, String lastName) {
-        return null;
-    }
-
-    @Override
-    public List<UserDto> findByEmail(String firstName, String lastName) {
-        return null;
-    }
-
+	/*
+	 * @Override public List<UserDto> findUserByFirstNameAndLastName(String
+	 * firstName, String lastName) { return null; }
+	 * 
+	 * @Override public List<UserDto> findByEmail(String firstName, String lastName)
+	 * { return null; }
+	 */
     @Override
     public void delete(Integer id) {
 
@@ -58,4 +60,13 @@ public class UserServiceImpl implements UserService {
     public UserDto update(UserDto userDto, Integer id) {
         return null;
     }
+	/*
+	 * //communication des microservice via restte
+	 * 
+	 * @Override public List<AccountDto> getAccountDto(Long userId) { List
+	 * <AccountDto> accountDto
+	 * =restTemplate.getForObject("http://localhost:8090/api/byUser/"+
+	 * userId,List.class); return accountDto; }
+	 */
+   
 }

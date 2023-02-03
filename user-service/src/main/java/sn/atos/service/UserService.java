@@ -1,5 +1,6 @@
 package sn.atos.service;
 
+import sn.atos.dto.AccountDto;
 import sn.atos.dto.UserDto;
 import sn.atos.entity.UserEntity;
 
@@ -14,12 +15,15 @@ public interface UserService {
 
     UserDto findById(Integer id);
 
-    List<UserDto> findUserByFirstNameAndLastName(String firstName, String lastName);
+   // List<UserDto> findUserByFirstNameAndLastName(String firstName, String lastName);
 
-    List<UserDto> findByEmail(String firstName, String lastName);
+    //List<UserDto> findByEmail(String firstName, String lastName);
 
     void delete(Integer id);
 
     UserDto update(UserDto userDto, Integer id);
+    
+    //restTemplate list account by user
+    ///List<AccountDto> getAccountDto(Long userId);
     
 }
