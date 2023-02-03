@@ -22,7 +22,8 @@ public interface UserService {
     void delete(Integer id);
 
     UserDto update(UserDto userDto, Integer id);
-    //
-    List<AccountDto> getAccountDto(Long userId);
+    
+    //restTemplate list account by user
+    ///List<AccountDto> getAccountDto(Long userId);
     
 }

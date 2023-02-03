@@ -60,12 +60,13 @@ public class UserServiceImpl implements UserService {
     public UserDto update(UserDto userDto, Integer id) {
         return null;
     }
-
-	@Override
-	public List<AccountDto> getAccountDto(Long userId) {
-	List <AccountDto> accountDto =restTemplate.getForObject("http://localhost:8090/api/byUser/"+ userId,List.class);
-		return accountDto;
-	}
-    
-    //communication des microservice via restte
+	/*
+	 * //communication des microservice via restte
+	 * 
+	 * @Override public List<AccountDto> getAccountDto(Long userId) { List
+	 * <AccountDto> accountDto
+	 * =restTemplate.getForObject("http://localhost:8090/api/byUser/"+
+	 * userId,List.class); return accountDto; }
+	 */
+   
 }

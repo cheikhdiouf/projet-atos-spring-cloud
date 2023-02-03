@@ -18,7 +18,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Repository
-@RequestMapping("/api/users")
+@RequestMapping("/users")
 public class UserController {
 
     private UserService userService;
@@ -28,20 +28,23 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("")
+    @GetMapping
     public ResponseEntity<List<UserEntity>> getUsers(){
         return new ResponseEntity<>(userService.findAll(), HttpStatus.OK);
     }
 
-    @PostMapping("")
+    @PostMapping
     public ResponseEntity<UserDto> addUser(@Valid @RequestBody UserDto userDto){
         UserDto userCreated = userService.save(userDto);
         return new ResponseEntity<>(userCreated, HttpStatus.CREATED);
     }
     
- // list des account pa rapport a id user RestTemplate
-    @GetMapping("/account/{userId}")
-    public List<AccountDto>accountDtos(@PathVariable Long userId){
-    	return userService.getAccountDto(userId);
-    }
+	/*
+	 * // list des account pa rapport a id user RestTemplate
+	 * 
+	 * @GetMapping("/account/{userId}") public
+	 * List<AccountDto>accountDtos(@PathVariable Long userId){ return
+	 * userService.getAccountDto(userId); }
+	 */
+    
 }
