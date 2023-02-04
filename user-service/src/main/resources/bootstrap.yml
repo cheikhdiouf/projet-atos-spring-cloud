@@ -1,9 +1,4 @@
-server:
-  port: 8083
-
 spring:
-  config:
-    import=optional:config-server:http://localhost:8081
   cloud:
     config:
       # import: optional:config-server:http:http://localhost:8081
