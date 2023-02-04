@@ -1,29 +1,2 @@
-server:
-  port: 8083
-spring:
-  data:
-    mongodb:
-      uri: mongodb://localhost:27017
-      database: microservices
-  application:
-    name: account-service
-  cloud:
-    gateway:
-      routes:
-        - id: user-service
-          uri: lb://user-service
-          predicates:
-            - Path=/users/**
-
-        - id: account-service
-          uri: lb://account-service
-          predicates:
-            - Path=/account/**
-eureka:
-  client:
-    fetch-registry: true
-    register-with-eureka: true
-    service-url:
-      defaultZone: http://localhost:8761/eureka
 
             
