@@ -1,12 +1,11 @@
+server:
+  port:   8081
+
 spring:
   application:
     name: user-service
-  cloud:
-    config:
-      enabled: true
-      uri: http://localhost:8081
   datasource:
-    url: jdbc:mysql://localhost:3306/bd_microservice?createDatabaseIfNotExist=true&userSSL=false&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/bd_microservice
     username: root
     password:
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -17,3 +16,6 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
+
+  config:
+    import: optional:config-server:http://localhost:8081

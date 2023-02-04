@@ -6,8 +6,6 @@ spring:
       server:
         git:
           uri: https://github.com/cheikhdiouf/config-server-repo
-          searchPaths: config-server-repo
-          default-label: master
           clone-on-start: true
 
   application:
