@@ -1,9 +1,9 @@
 spring:
   cloud:
     config:
-       import: optional:config-server:http:http://localhost:8081
-     # enabled: true
-     # uri: http://localhost:8081
+      # import: optional:config-server:http:http://localhost:8081
+       enabled: true
+       uri: http://localhost:8081
   application:
     name: user-service
   datasource:
