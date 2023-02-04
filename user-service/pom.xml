@@ -47,6 +47,7 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-bootstrap</artifactId>
 		</dependency>
+
 		<!-- PostgreSQL doesn't work -->
 		<!--<dependency>
 			<groupId>org.postgresql</groupId>
