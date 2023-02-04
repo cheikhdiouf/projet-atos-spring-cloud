@@ -5,7 +5,8 @@ spring:
     config:
       enabled: true
       uri: http://localhost:8081
-
+  profiles:
+    active: dev
   datasource:
     url: jdbc:mysql://localhost:3306/bd_microservice?createDatabaseIfNotExist=true&userSSL=false&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
     username: root
