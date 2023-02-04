@@ -7,7 +7,7 @@ spring:
       server:
         git:
           uri: https://github.com/cheikhdiouf/config-server-repo
-          default-label: main
+          default-label: master
           clone-on-start: true
 
   application:
