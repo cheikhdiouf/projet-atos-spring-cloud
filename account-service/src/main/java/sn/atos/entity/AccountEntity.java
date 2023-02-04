@@ -9,7 +9,7 @@ import sn.atos.enums.CompteType;
 
 import java.io.Serializable;
 import java.util.Date;
-@Document(collation = "account")
+@Document(collation = "AccountEntity")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

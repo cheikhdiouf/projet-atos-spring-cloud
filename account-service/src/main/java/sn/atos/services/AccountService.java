@@ -7,9 +7,9 @@ import java.util.List;
 
 public interface AccountService {
     List<AccountEntity> getAllAccounts();
-    AccountEntity getAccountById(String code);
+    AccountDTO getAccountById(String code);
     AccountDTO createAccount(AccountDTO accountDTO);
-    void deleteAccount(String code);
-    AccountEntity updateAccount(AccountEntity account);
-    AccountEntity getAccountByAccountNumber(Long accountNumber);
+    void deleteAccount(String id);
+    AccountDTO updateAccount(String id, AccountDTO accountDTO);
+    AccountDTO getAccountByAccountNumber(Long accountNumber);
 }

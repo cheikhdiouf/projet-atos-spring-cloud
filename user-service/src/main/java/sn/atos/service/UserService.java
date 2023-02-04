@@ -14,12 +14,11 @@ public interface UserService {
 
     UserDto findById(Integer id);
 
-    List<UserDto> findUserByFirstNameAndLastName(String firstName, String lastName);
+    UserDto findUserByFirstNameAndLastName(String firstName, String lastName);
 
-    List<UserDto> findByEmail(String firstName, String lastName);
+    UserDto findByEmail(String email);
 
     void delete(Integer id);
 
     UserDto update(UserDto userDto, Integer id);
-    
 }
