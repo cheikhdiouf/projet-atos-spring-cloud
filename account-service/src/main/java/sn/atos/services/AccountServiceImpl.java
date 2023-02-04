@@ -1,46 +1,49 @@
 package sn.atos.services;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import sn.atos.dto.AccountDTO;
 import sn.atos.entity.AccountEntity;
 import sn.atos.exceptions.ResourceNotFoundException;
-import sn.atos.mappers.AccountMapper;
 import sn.atos.repository.AccountRepository;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+
+import static java.util.Arrays.stream;
 
 @Service
 public class AccountServiceImpl implements AccountService {
     private final AccountRepository accountRepository;
-    private final AccountMapper accountMapper;
+    private final ModelMapper modelMapper;
 
-    public AccountServiceImpl(AccountRepository accountRepository, AccountMapper accountMapper) {
+    public AccountServiceImpl(AccountRepository accountRepository, ModelMapper modelMapper) {
         this.accountRepository = accountRepository;
-        this.accountMapper = accountMapper;
+        this.modelMapper = modelMapper;
     }
 
 
     @Override
     public List<AccountEntity> getAllAccounts() {
-        return accountRepository.findAll();
+        return accountRepository.findAll()
+        .stream().map(el -> modelMapper.map(el, AccountEntity.class))
+                .collect(Collectors.toList());
     }
 
     @Override
-    public AccountEntity getAccountById(String id) {
-        Optional<AccountEntity> optionalAccount = accountRepository.findById(id);
-        if (!optionalAccount.isPresent()){
-            throw new ResourceNotFoundException("Acount with id = "+id+"  is not found");
-        }
-        return optionalAccount.get();
+    public AccountDTO getAccountById(String id) {
+        AccountEntity accountEntity = accountRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Account not found"));
+        return modelMapper.map(accountEntity, AccountDTO.class);
     }
 
     @Override
     public AccountDTO createAccount(AccountDTO accountDTO) {
-        AccountEntity accountEntity = accountMapper.toEntity(accountDTO);
-        AccountEntity accountEntityCreated = accountRepository.save(accountEntity);
-        AccountDTO accountDTOGETED = accountMapper.toDto(accountEntityCreated);
-        return accountDTOGETED;
+
+        AccountEntity accountEntity = modelMapper.map(accountDTO, AccountEntity.class);
+        AccountEntity newAccount = accountRepository.save(accountEntity);
+        return modelMapper.map(newAccount, AccountDTO.class);
+
     }
 
     @Override
@@ -49,13 +52,21 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public AccountEntity updateAccount(AccountEntity account) {
-
-        return null;
+    public AccountDTO updateAccount(String id, AccountDTO accountDTO) {
+        Optional <AccountEntity> user = accountRepository.findById(id);
+        if(user.isPresent()){
+            AccountEntity accountEntity = modelMapper.map(accountDTO, AccountEntity.class);
+            accountEntity.setId(id);
+            AccountEntity accountToUpdate = accountRepository.save(accountEntity);
+            return modelMapper.map(accountToUpdate, AccountDTO.class);
+        } else{
+            throw new ResourceNotFoundException("Not found account with id ="+ id );
+        }
     }
 
     @Override
-    public AccountEntity getAccountByAccountNumber(Long accountNumber) {
-        return null;
+    public AccountDTO getAccountByAccountNumber(Long accountNumber) {
+        AccountEntity accountEntity = accountRepository.findByAccountNumber(accountNumber).orElseThrow(() -> new ResourceNotFoundException("Account with account number "+accountNumber+" is not found"));
+        return  modelMapper.map(accountEntity, AccountDTO.class);
     }
 }
