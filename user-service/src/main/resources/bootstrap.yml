@@ -22,7 +22,7 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
   config:
-      import: optional:config-server:http://localhost:8085
+      import: optional:config-server:http://localhost:8081
 
 
 
