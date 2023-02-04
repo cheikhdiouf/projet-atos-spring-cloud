@@ -2,7 +2,7 @@ spring:
   cloud:
     config:
       # import: optional:config-server:http:http://localhost:8081
-       enabled: true
+       enabled: false
        uri: http://localhost:8081
   application:
     name: user-service
