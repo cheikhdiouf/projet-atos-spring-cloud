@@ -18,7 +18,7 @@ public interface UserService {
 
     UserDto findByEmail(String email);
 
-    void delete(Integer id);
+    UserDto delete(Integer id);
 
     UserDto update(UserDto userDto, Integer id);
 }

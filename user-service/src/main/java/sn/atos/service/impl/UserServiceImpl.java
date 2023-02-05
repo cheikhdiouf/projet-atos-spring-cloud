@@ -38,10 +38,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDto save(UserDto userDto) {
-       /* UserEntity userEntity = userMapper.toEntity(userDto);
-        UserEntity user = userRepository.save(userEntity);
-        UserDto userCreated = userMapper.toDto(user);
-        return (userCreated);*/
         UserEntity userEntity = modelMapper.map(userDto, UserEntity.class);
         UserEntity savedUser = userRepository.save(userEntity);
         return modelMapper.map(savedUser, UserDto.class);
@@ -67,8 +63,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void delete(Integer id) {
+    public UserDto delete(Integer id) {
     userRepository.deleteById(id);
+        return null;
     }
 
     @Override
