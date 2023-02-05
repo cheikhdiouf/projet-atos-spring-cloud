@@ -23,12 +23,12 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("")
+    @GetMapping
     public ResponseEntity<List<UserEntity>> getUsers(){
         return new ResponseEntity<>(userService.findAll(), HttpStatus.OK);
     }
 
-    @PostMapping("")
+    @PostMapping
     public ResponseEntity<UserDto> addUser(@Valid @RequestBody UserDto userDto){
         UserDto userCreated = userService.save(userDto);
         return new ResponseEntity<>(userCreated, HttpStatus.CREATED);

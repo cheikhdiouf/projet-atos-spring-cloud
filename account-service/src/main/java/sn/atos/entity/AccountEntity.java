@@ -3,19 +3,30 @@ package sn.atos.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 import sn.atos.enums.CompteType;
 
-import java.io.Serializable;
 import java.util.Date;
-@Document(collation = "AccountEntity")
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
 public class AccountEntity {
-    @Id
-    private  String id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+    private  Long id;
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date creationDate;
     private  Long accountNumber;
     private double amount;

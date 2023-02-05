@@ -18,36 +18,32 @@ public class AccountController {
     }
     @PostMapping
     public AccountDTO  createAccount(@RequestBody AccountDTO accountDTO) {
-        return accountService.createAccount(accountDTO);
+        return accountService.save(accountDTO);
     }
 
     @GetMapping
-    public List<AccountEntity> getAccounts() {
+    public List<AccountDTO> getAccounts() {
 
-        return accountService.getAllAccounts();
+        return accountService.findAll();
     }
 
     @GetMapping("/{id}")
-    public AccountDTO getAccountById(@PathVariable String id) {
+    public AccountDTO getAccountById(@PathVariable Long id) {
 
-        return accountService.getAccountById(id);
+        return accountService.findById(id);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteAccountById(@PathVariable String id) {
+    public void deleteAccountById(@PathVariable Long id) {
 
-        accountService.deleteAccount(id);
+        accountService.delete(id);
     }
 
-    @GetMapping("/{accountNumber}")
-    public AccountDTO getAccountByAccountNumber(@PathVariable Long accountNumber) {
-
-        return accountService.getAccountByAccountNumber(accountNumber);
-    }
-
+   
     @PutMapping ("/{id}")
-    public AccountDTO  updateAccount(@PathVariable String id ,@RequestBody AccountDTO accountDTO) {
-        return accountService.updateAccount(id, accountDTO);
-    }
+    public AccountDTO  updateAccount(@PathVariable Long id ,@RequestBody AccountDTO accountDTO) {
+        return accountService.update(accountDTO, id);
 
+}
+ 
 }
