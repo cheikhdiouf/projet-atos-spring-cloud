@@ -5,11 +5,16 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import sn.atos.entity.RoleEntity;
 
+import javax.persistence.FetchType;
+import javax.persistence.ManyToMany;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -34,12 +39,17 @@ public class UserDto {
     private String email;
 
     @NotNull(message = "Address cannot be empty!")
-    @NotBlank(message = "Email required !")
+    @NotBlank(message = "Address required !")
     @Size(min = 2, max = 100, message = "Lastname size must between 2 and 50 characters")
     private String address;
 
+    @NotNull(message = "Password cannot be empty!")
+    @NotBlank(message = "Password required !")
+    @Size(min = 2, max = 100, message = "Password size must between 2 and 50 characters")
+    private String password;
+
     @NotNull(message = "Phone number cannot be empty!")
-    @NotBlank(message = "Email required !")
     private Integer phoneNumber;
 
+    private List<RoleEntity> roles = new ArrayList<>();
 }

@@ -2,9 +2,11 @@ package sn.atos.service.impl;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import sn.atos.dto.RoleDto;
 import sn.atos.dto.UserDto;
 import sn.atos.entity.UserEntity;
 import sn.atos.exception.EntityNotFoundException;
+import sn.atos.repository.RoleRepository;
 import sn.atos.repository.UserRepository;
 import sn.atos.service.UserService;
 
@@ -17,14 +19,16 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
 
+    private final RoleRepository roleRepository;
     //private final UserMapper userMapper;
     
 	//private RestTemplate restTemplate;
 
     private final ModelMapper modelMapper;
 
-    public UserServiceImpl(UserRepository userRepository, ModelMapper modelMapper) {
+    public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository, ModelMapper modelMapper) {
         this.userRepository = userRepository;
+        this.roleRepository = roleRepository;
 
         this.modelMapper = modelMapper;
     }
@@ -58,7 +62,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDto findByEmail(String email) {
-        UserEntity userEntity = userRepository.findByEmail(email).orElseThrow(() -> new EntityNotFoundException("User email not found"));
+        UserEntity userEntity = userRepository.findByEmail(email);
         return  modelMapper.map(userEntity, UserDto.class);
     }
 
@@ -77,7 +81,7 @@ public class UserServiceImpl implements UserService {
             UserEntity updatedUser = userRepository.save(userEntity);
             return modelMapper.map(updatedUser, UserDto.class);
         } else{
-            throw new EntityNotFoundException("Produit not found");
+            throw new EntityNotFoundException("Role not found");
         }
     }
 
