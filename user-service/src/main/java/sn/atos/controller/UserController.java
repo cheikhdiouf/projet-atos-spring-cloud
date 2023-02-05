@@ -34,7 +34,7 @@ public class UserController {
         return new ResponseEntity<>(userCreated, HttpStatus.CREATED);
     }
 
-    @GetMapping("/id/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<UserDto> getUserById(@PathVariable("id") Integer id){
         return new ResponseEntity(userService.findById(id), HttpStatus.OK);
     }
@@ -60,10 +60,5 @@ public class UserController {
         userService.delete(id);
         return ResponseEntity.noContent().build();
     }
-    
- /*// list des account pa rapport a id user RestTemplate
-    @GetMapping("/account/{userId}")
-    public List<AccountDto>accountDtos(@PathVariable Long userId){
-    	return userService.getAccountDto(userId);
-    }*/
+
 }
