@@ -1,7 +1,9 @@
 package sn.atos.service.impl;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
+import sn.atos.dto.AccountDto;
 import sn.atos.dto.UserDto;
 import sn.atos.entity.UserEntity;
 import sn.atos.exception.EntityNotFoundException;
@@ -19,7 +21,7 @@ public class UserServiceImpl implements UserService {
 
     //private final UserMapper userMapper;
     
-	//private RestTemplate restTemplate;
+	private RestTemplate restTemplate;
 
     private final ModelMapper modelMapper;
 
@@ -84,12 +86,12 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-	/*
+	
 	 //communication des microservice via restte
 	@Override
 	public List<AccountDto> getAccountDto(Long userId) {
-	List <AccountDto> accountDto =restTemplate.getForObject("http://localhost:8090/api/byUser/"+ userId,List.class);
+	List <AccountDto> accountDto =restTemplate.getForObject("http://localhost:9000/api/account/byUser/"+ userId,List.class);
 		return accountDto;
-	}*/
+	}
     
 }

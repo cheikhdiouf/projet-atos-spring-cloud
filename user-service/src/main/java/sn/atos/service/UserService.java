@@ -1,5 +1,6 @@
 package sn.atos.service;
 
+import sn.atos.dto.AccountDto;
 import sn.atos.dto.UserDto;
 import sn.atos.entity.UserEntity;
 
@@ -21,4 +22,6 @@ public interface UserService {
     void delete(Integer id);
 
     UserDto update(UserDto userDto, Integer id);
+    
+    List<AccountDto> getAccountDto(Long userId);
 }

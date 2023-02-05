@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
 
+import sn.atos.dto.AccountDto;
 import sn.atos.dto.UserDto;
 import sn.atos.entity.UserEntity;
 import sn.atos.service.UserService;
@@ -61,4 +62,10 @@ public class UserController {
         return ResponseEntity.noContent().build();
     }
 
+    
+    @GetMapping("/account/{userid}")
+    public List<AccountDto> getAccount(@PathVariable Long userId){
+    	return userService.getAccountDto(userId);
+    }
+    
 }
