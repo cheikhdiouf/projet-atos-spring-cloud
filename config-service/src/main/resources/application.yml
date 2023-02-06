@@ -5,7 +5,7 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/cheikhdiouf/config-server-repo.git
+          uri: https://github.com/cheikhdiouf/projet-atos-spring-cloud.git
   application:
     name: config-service
 eureka:
