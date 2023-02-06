@@ -4,7 +4,7 @@ spring:
       uri: http://localhost:8081
       enabled: false
   application:
-    name: user-service
+    name: account-service
   datasource:
     url: jdbc:mysql://localhost:3306/bd_microservice?createDatabaseIfNotExist=true&userSSL=false&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
     username: root
@@ -17,7 +17,5 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
-
-
 
 
